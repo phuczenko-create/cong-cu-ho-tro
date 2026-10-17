@@ -13,8 +13,10 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            height: 100vh;
+            min-height: 100vh;
             margin: 0;
+            padding: 20px 0;
+            box-sizing: border-box;
         }
         .container {
             background-color: #ffffff;
@@ -22,7 +24,7 @@
             border-radius: 5px;
             box-shadow: 0 2px 10px rgba(0,0,0,0.05);
             width: 100%;
-            max-width: 380px;
+            max-width: 400px;
             border-top: 6px solid #0056b3; /* Xanh dương corporate */
         }
         h2 {
@@ -52,6 +54,20 @@
         input:focus, select:focus {
             outline: none;
             border-color: #0056b3;
+        }
+        /* Style cho khung chọn khoảng thời gian song song */
+        .date-range {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+        }
+        .date-range div {
+            flex: 1;
+        }
+        .date-range span {
+            font-weight: bold;
+            color: #0056b3;
+            margin-top: 15px;
         }
         button {
             width: 100%;
@@ -85,7 +101,6 @@
 <div class="container">
     <h2>Công Cụ Hỗ Trợ Tài Khoản</h2>
     
-    <!-- Thay link web app GG Sheet vào mục action -->
     <form action="https://script.google.com/macros/s/AKfycby3KDKLTXnybn-ysrPaF2bhQLbtl7yrs4h3nCu3KZ1AyBzLEIXJQ1l_XWPzZ9AIWpXx/exec" method="POST" target="hidden_iframe" onsubmit="alert('Đã gửi thông tin thành công!');">
         
         <div class="form-group">
@@ -112,6 +127,20 @@
                 <option value="Messenger">Messenger</option>
                 <option value="Zalo">Zalo</option>
             </select>
+        </div>
+
+        <!-- Phần chọn khoảng thời gian (Tháng/Năm - Tháng/Năm) -->
+        <div class="form-group">
+            <label>Khoảng thời gian hỗ trợ</label>
+            <div class="date-range">
+                <div>
+                    <input type="month" id="from_time" name="from_time" required>
+                </div>
+                <span>-</span>
+                <div>
+                    <input type="month" id="to_time" name="to_time" required>
+                </div>
+            </div>
         </div>
         
         <button type="submit">Gửi đi</button>
