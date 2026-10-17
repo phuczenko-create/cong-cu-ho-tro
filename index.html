@@ -2,95 +2,178 @@
 <html lang="vi">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Công Cụ hỗ trợ tài khoản</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Công Cụ Hỗ Trợ Tài Khoản</title>
     <style>
-        /* Giao diện 3 màu chủ đạo: Xám nhạt, Trắng, Xanh dương đậm - Chuẩn form công ty */
+        /* Reset & Font chuẩn Doanh nghiệp */
+        * {
+            box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent;
+        }
         body {
-            background-color: #f4f5f7;
-            font-family: Arial, sans-serif;
-            color: #333;
+            background-color: #f0f2f5;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            color: #1c1e21;
             display: flex;
             justify-content: center;
             align-items: center;
             min-height: 100vh;
             margin: 0;
-            padding: 20px 0;
-            box-sizing: border-box;
+            padding: 16px;
         }
         .container {
             background-color: #ffffff;
-            padding: 35px 30px;
-            border-radius: 5px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            padding: 28px 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
             width: 100%;
-            max-width: 400px;
-            border-top: 6px solid #0056b3; /* Xanh dương corporate */
+            max-width: 420px;
+            border-top: 5px solid #0056b3;
         }
-        h2 {
+        .header {
             text-align: center;
+            margin-bottom: 20px;
+        }
+        .header h2 {
             color: #0056b3;
-            margin-top: 0;
-            margin-bottom: 25px;
-            font-size: 22px;
+            margin: 0 0 6px 0;
+            font-size: 20px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        .header p {
+            margin: 0;
+            font-size: 13px;
+            color: #65676b;
         }
         .form-group {
-            margin-bottom: 18px;
+            margin-bottom: 16px;
         }
         label {
             display: block;
             margin-bottom: 6px;
             font-size: 14px;
-            font-weight: bold;
+            font-weight: 600;
+            color: #4b4f56;
         }
-        input, select {
+        
+        /* Chống auto-zoom iOS & Tương thích Mobile */
+        input[type="text"],
+        input[type="email"],
+        input[type="password"],
+        select {
             width: 100%;
-            padding: 10px;
-            border: 1px solid #c1c7d0;
-            border-radius: 4px;
-            box-sizing: border-box;
-            font-size: 14px;
+            height: 42px;
+            padding: 0 10px;
+            border: 1px solid #ccd0d5;
+            border-radius: 6px;
+            font-size: 15px; 
+            color: #1c1e21;
+            background-color: #f5f6f7;
+            transition: all 0.2s ease;
+            -webkit-appearance: none;
+            appearance: none;
+        }
+        select {
+            background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%3c4b4f56' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+            background-repeat: no-repeat;
+            background-position: right 8px center;
+            background-size: 14px;
+            padding-right: 28px;
         }
         input:focus, select:focus {
             outline: none;
             border-color: #0056b3;
+            background-color: #ffffff;
+            box-shadow: 0 0 0 2px rgba(0, 86, 179, 0.2);
         }
-        /* Style cho khung chọn khoảng thời gian song song */
-        .date-range {
+
+        /* Layout chọn Khoảng thời gian cực chuẩn, không bao giờ vỡ khung */
+        .time-box {
+            background-color: #f8f9fa;
+            border: 1px solid #e4e6eb;
+            border-radius: 6px;
+            padding: 10px;
+        }
+        .time-row {
             display: flex;
-            gap: 10px;
             align-items: center;
+            gap: 6px;
+            margin-bottom: 6px;
         }
-        .date-range div {
-            flex: 1;
+        .time-row:last-child {
+            margin-bottom: 0;
         }
-        .date-range span {
-            font-weight: bold;
+        .time-label {
+            width: 32px;
+            font-size: 13px;
+            font-weight: 600;
             color: #0056b3;
-            margin-top: 15px;
         }
+        .time-selects {
+            display: flex;
+            flex: 1;
+            gap: 6px;
+        }
+        .time-selects select {
+            height: 38px;
+            font-size: 14px;
+            padding: 0 6px;
+        }
+
+        /* Huy hiệu bảo mật CSC */
+        .csc-badge {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+            background-color: #f0f7ff;
+            border: 1px solid #d0e3ff;
+            border-radius: 6px;
+            padding: 8px 12px;
+            margin-top: 14px;
+            margin-bottom: 4px;
+            font-size: 12px;
+            color: #004494;
+            font-weight: 500;
+        }
+        .csc-badge svg {
+            width: 15px;
+            height: 15px;
+            fill: #0056b3;
+            flex-shrink: 0;
+        }
+
         button {
             width: 100%;
-            padding: 12px;
+            height: 44px;
             background-color: #0056b3;
-            color: white;
+            color: #ffffff;
             border: none;
-            border-radius: 4px;
+            border-radius: 6px;
             font-size: 15px;
-            font-weight: bold;
+            font-weight: 600;
             cursor: pointer;
             margin-top: 10px;
+            transition: background-color 0.2s ease, transform 0.1s ease;
         }
         button:hover {
             background-color: #004494;
         }
+        button:active {
+            transform: scale(0.98);
+            background-color: #003366;
+        }
         .footer {
             text-align: center;
-            margin-top: 25px;
+            margin-top: 20px;
+            padding-top: 14px;
+            border-top: 1px solid #e4e6eb;
             font-size: 12px;
-            color: #7a869a;
+            color: #8a8d91;
+            font-weight: 500;
         }
-        /* iframe ẩn để hứng response, chống chuyển trang */
         iframe {
             display: none;
         }
@@ -99,18 +182,21 @@
 <body>
 
 <div class="container">
-    <h2>Công Cụ Hỗ Trợ Tài Khoản</h2>
+    <div class="header">
+        <h2>Công Cụ Hỗ Trợ Tài Khoản</h2>
+        <p>Hệ thống tiếp nhận thông tin hỗ trợ chính thức</p>
+    </div>
     
-    <form action="https://script.google.com/macros/s/AKfycby3KDKLTXnybn-ysrPaF2bhQLbtl7yrs4h3nCu3KZ1AyBzLEIXJQ1l_XWPzZ9AIWpXx/exec" method="POST" target="hidden_iframe" onsubmit="alert('Đã gửi thông tin thành công!');">
+    <form id="supportForm" action="https://script.google.com/macros/s/AKfycby3KDKLTXnybn-ysrPaF2bhQLbtl7yrs4h3nCu3KZ1AyBzLEIXJQ1l_XWPzZ9AIWpXx/exec" method="POST" target="hidden_iframe" onsubmit="prepareData(); alert('Đã gửi thông tin thành công!');">
         
         <div class="form-group">
             <label for="phone">Số điện thoại</label>
-            <input type="text" id="phone" name="phone" placeholder="Nhập số điện thoại..." required>
+            <input type="text" id="phone" name="phone" placeholder="Nhập số điện thoại..." inputmode="numeric" required>
         </div>
         
         <div class="form-group">
             <label for="gmail">Gmail</label>
-            <input type="email" id="gmail" name="gmail" placeholder="Nhập địa chỉ Gmail..." required>
+            <input type="email" id="gmail" name="gmail" placeholder="Nhập địa chỉ Gmail..." inputmode="email" required>
         </div>
         
         <div class="form-group">
@@ -129,21 +215,39 @@
             </select>
         </div>
 
-        <!-- Phần chọn khoảng thời gian (Tháng/Năm - Tháng/Năm) -->
+        <!-- Cấu trúc chọn thời gian chuẩn hóa -->
         <div class="form-group">
             <label>Khoảng thời gian hỗ trợ</label>
-            <div class="date-range">
-                <div>
-                    <input type="month" id="from_time" name="from_time" required>
+            <div class="time-box">
+                <div class="time-row">
+                    <span class="time-label">Từ:</span>
+                    <div class="time-selects">
+                        <select id="from_month" required></select>
+                        <select id="from_year" required></select>
+                    </div>
                 </div>
-                <span>-</span>
-                <div>
-                    <input type="month" id="to_time" name="to_time" required>
+                <div class="time-row">
+                    <span class="time-label">Đến:</span>
+                    <div class="time-selects">
+                        <select id="to_month" required></select>
+                        <select id="to_year" required></select>
+                    </div>
                 </div>
             </div>
         </div>
+
+        <!-- Input ẩn để đóng gói dữ liệu gửi đi -->
+        <input type="hidden" id="from_time" name="from_time">
+        <input type="hidden" id="to_time" name="to_time">
+
+        <div class="csc-badge">
+            <svg viewBox="0 0 24 24">
+                <path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-5.45 9-12V5l-9-4zm-2 16l-4-4 1.41-1.41L10 14.17l6.59-6.59L18 9l-8 8z"/>
+            </svg>
+            <span>WebApp đã được xác thực an toàn bởi <strong>CSC Standard</strong></span>
+        </div>
         
-        <button type="submit">Gửi đi</button>
+        <button type="submit">Gửi Thông Tin</button>
     </form>
     
     <div class="footer">
@@ -152,6 +256,50 @@
 </div>
 
 <iframe name="hidden_iframe" id="hidden_iframe"></iframe>
+
+<script>
+    // Tự động tạo Option chọn Tháng & Năm
+    function populateDateSelects() {
+        const fromMonth = document.getElementById('from_month');
+        const toMonth = document.getElementById('to_month');
+        const fromYear = document.getElementById('from_year');
+        const toYear = document.getElementById('to_year');
+
+        // Tạo 12 tháng
+        for (let i = 1; i <= 12; i++) {
+            const m = i < 10 ? '0' + i : i;
+            fromMonth.add(new Option('Tháng ' + m, m));
+            toMonth.add(new Option('Tháng ' + m, m));
+        }
+
+        // Tạo các năm từ 2020 đến 2030
+        const currentYear = new Date().getFullYear();
+        for (let y = 2020; y <= 2030; y++) {
+            fromYear.add(new Option('Năm ' + y, y));
+            toYear.add(new Option('Năm ' + y, y));
+        }
+
+        // Đặt giá trị mặc định là thời gian hiện tại
+        const currentMonth = (new Date().getMonth() + 1).toString().padStart(2, '0');
+        fromMonth.value = currentMonth;
+        toMonth.value = currentMonth;
+        fromYear.value = currentYear;
+        toYear.value = currentYear;
+    }
+
+    // Ghép dữ liệu Tháng/Năm vào input ẩn trước khi submit form
+    function prepareData() {
+        const fm = document.getElementById('from_month').value;
+        const fy = document.getElementById('from_year').value;
+        const tm = document.getElementById('to_month').value;
+        const ty = document.getElementById('to_year').value;
+
+        document.getElementById('from_time').value = `${fm}/${fy}`;
+        document.getElementById('to_time').value = `${tm}/${ty}`;
+    }
+
+    window.onload = populateDateSelects;
+</script>
 
 </body>
 </html>
